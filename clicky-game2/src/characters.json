@@ -1,0 +1,76 @@
+[
+    {
+        "id": 1,
+        "name": "Mihoshi",
+        "image": "../public/images/tenchi_mihoshi.jpg",
+        "clicked": false
+    },
+    {
+        "id": 2,
+        "name": "Sasami",
+        "image": "../public/images/tenchi_sasami.jpg",
+        "clicked": false
+        
+    },
+    {
+        "id": 3,
+        "name": "Ryoko",
+        "image": "../public/images/tenchi_ryoko.jpg",
+        "clicked": false
+    },
+    {
+        "id": 4,
+        "name": "Tenchi",
+        "image": "../public/images/tenchi_tenchi-masaki.jpg",
+        "clicked": false
+    },
+    {
+        "id": 5,
+        "name": "Ayeka",
+        "image": "../public/images/tenchi_ayeka.jpg",
+        "clicked": false
+    },
+    {
+        "id": 6,
+        "name": "Ryo-Ohki",
+        "image": "public/images/tenchi_ryo-ohki.jpg",
+        "clicked": false
+    },
+    {
+        "id": 7,
+        "name": "Washu",
+        "image": "./public/images/tenchi_washu.jpg",
+        "clicked": false
+    },
+    {
+        "id": 8,
+        "name": "Kain",
+        "image": "./public/images/tenchi_kain.jpg",
+        "clicked": false
+    },
+    {
+        "id": 9,
+        "name": "Achika",
+        "image": "./public/images/tenchi_achika.jpg",
+        "clicked": false
+    },
+    {
+        "id": 10,
+        "name": "Kiyone",
+        "image": "./public/images/tenchi_kiyone.jpg",
+        "clicked": false
+    },
+    {
+        "id": 11,
+        "name": "Tsunami",
+        "image": "../public/images/tenchi_tsunami.jpg",
+        "clicked": false
+    },
+    {
+        "id": 12,
+        "name": "Kagato",
+        "image": "../public/images/tenchi_kagato.jpg",
+        "clicked": false
+    }
+
+]

@@ -1,0 +1,28 @@
+.card {
+    background-size: cover;
+    border: 6px solid white;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    
+  }
+
+  .card > .img-container {
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    background:#6CADDC;
+  }
+  .card > .img-container > img {
+    width: 60%
+  }
+  
+  .card > .content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 15px;
+  }
+  
+ 
+  
