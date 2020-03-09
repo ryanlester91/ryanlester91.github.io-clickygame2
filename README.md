@@ -1,4 +1,4 @@
-# ryanlester91.github.io-clickygame2
+# clickyGameB
 github repo for my React-based clicky game app
 
 Heroku link: https://vast-lake-32909.herokuapp.com/
