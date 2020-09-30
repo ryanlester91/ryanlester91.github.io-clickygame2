@@ -1,98 +1,133 @@
 import React, {Component} from "react";
+import GridMDC from "./components/GridMDC";
+import PaperMDC from "./components/PaperMDC";
 import Score from "./components/Score";
 import Alert from "./components/Alert";
 import Card from "./components/Card";
-import Wrapper from "./components/Wrapper";
+//import Wrapper from "./components/Wrapper";
+import NavBar from "./components/NavBar";
+import BottomNavMDC from "./components/BottomNavMDC";
 import characters from "./characters.json";
 
 class App extends Component {
 
-    state = {
-      characters: characters,
-      pickedChars: [],
-      score: 0,
-      alertMessage: ""
-    }
-
-    //componentDidMount(){
-
-    //};
-  
-    handlePicked = event => {
-  
-      const name = event.target.attributes.getNamedItem("name").value;
-      this.shuffleCharacters()
-      this.checkGuess(name);
-    }
-
-    shuffleCharacters = () => {
-        this.shuffleArray= {...this.state.characters}
-        
+  state = {
+    characters: characters,
+    pickedChars: [],
+    topScore: 0,
+    alertMessage: ""
   }
 
-  shuffleArray = (arr) => {
-    let currentIndex = arr.length, tempValue, randomIndex;
-    //while there remain elements to shuffle
-    while (0 !== currentIndex) {
+  handlePicked = event => {
 
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+    const name = event.target.attributes.getNamedItem("name").value;
+    this.shuffleCharacters()
+    this.checkGuess(name, this.updateTopScore)
+  }
 
-      //swap with current element
-      tempValue = arr[currentIndex];
-      arr[currentIndex] = arr[randomIndex];
-      arr[randomIndex] = tempValue;
+  shuffleCharacters = () => {
+    this.setState(this.state.characters = this.shuffleArray(this.state.characters))
+  }
+
+  shuffleArray = (a) => {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+      j = Math.floor(Math.random() * (i + 1));
+      x = a[i];
+      a[i] = a[j];
+      a[j] = x;
     }
-    return console.log(arr);
+    return a;
   }
-      
-  
-  
-    /*const pickedChars = characters.filter(function(character) {
-        return character.clicked = true;
-      });
-      
-      console.log(characters);
-      console.log(pickedChars);*/
 
-      checkGuess = (name, cb) => {
-        const newState = { ...this.state };
-        if (newState.pickedChars.includes(name)) {
-          newState.alertMessage = `YOU ALREADY PICKED "${name.toUpperCase()}"!`
-          newState.pickedChars = []
-          this.setState({newState})
-        } else {
-          newState.pickedChars.push(name)
-          newState.alertMessage = `GOOD CHOICE!`
-          this.setState({newState})
-        }
-        cb(newState, this.alertWinner)
-      }
-
-      alertWinner = (newState) => {
-        if (newState.pickedChars.length === 12) {
-          newState.alertMessage = "YOU DID IT, CHAMP!";
-          newState.pickedChars = [];
-          this.setState({newState})
-        }
-      }
-
-
-render() {
-  return(
-    <div>
-      <Wrapper>Clicky Game <Score>{this.score}</Score> <Alert>{this.alertMessage} </Alert></Wrapper>
-      {this.state.characters.map(character => ( 
-        <Card>
-              id={character.id}
-              key={character.id}
-              name={character.name}
-              image={character.image}
-              clicked={character.clicked}
-        </Card>
-      ))}
-    </div>
-  )};
+  checkGuess = (name, cb) => {
+    const newState = { ...this.state };
+    if (newState.pickedChars.includes(name)) {
+      newState.alertMessage = `YOU ALREADY PICKED "${name.toUpperCase()}"!`
+      newState.pickedChars = []
+      this.setState(this.state = newState)
+    } else {
+      newState.pickedChars.push(name)
+      newState.alertMessage = `GOOD CHOICE!`
+      this.setState(this.state = newState)
+    }
+    cb(newState, this.alertWinner)
   }
+
+  updateTopScore = (newState, cb) => {
+    if (newState.pickedChars.length > newState.topScore) {
+      newState.topScore++
+      this.setState(this.state = newState)
+    }
+    cb(newState)
+  }
+
+  alertWinner = (newState) => {
+    if (newState.pickedChars.length === 12) {
+      newState.alertMessage = "CHAMPION!";
+      newState.pickedChars = [];
+      this.setState(this.state = newState)
+    }
+  }
+
+
+  render() {
+    return (
+      <div>
+        <NavBar style={{ background: "#313133", marginBottom: "5px" }} />
+
+        <GridMDC container direction="column" style={{ margin: "0 auto", maxWidth: 945 }}>
+
+          <GridMDC item lg={12}>
+            <PaperMDC>
+              {this.state.alertMessage === "GOOD CHOICE!" ? (
+                <Alert message={this.state.alertMessage} style={{ color: "green" }} />
+              ) : (
+                  <Alert message={this.state.alertMessage} style={{ color: "red" }} />
+                )}
+            </PaperMDC>
+          </GridMDC>
+
+          <GridMDC container justify="space-between">
+
+            <GridMDC item lg={6} md={6} sm={12} xs={12}>
+              <PaperMDC>
+                <Score type="Score" score={this.state.pickedChars.length} />
+              </PaperMDC>
+            </GridMDC>
+
+            <GridMDC item lg={6} md={6} sm={12} xs={12}>
+              <PaperMDC>
+                <Score type="Top Score" score={this.state.topScore} />
+              </PaperMDC>
+            </GridMDC>
+
+          </GridMDC>
+
+        </GridMDC>
+
+        <GridMDC container spacing={24} justify="center" style={{ maxWidth: 945, margin: "0 auto" }}>
+          {this.state.characters.map(char => (
+            <GridMDC item lg={3} md={3} sm={4} xs={6}>
+            <Card
+              id={char.id}
+              name={char.name}
+              image={char.image}
+              key={char.id}
+              handlePicked={this.handlePicked}
+            />
+            </GridMDC>
+          ))}
+        </GridMDC>
+        <BottomNavMDC style={{ background: "#313133", marginTop: "17.5px", paddingTop: "15px", borderTop: "2.5px solid slategray" }}>
+          <a href="#" target="_blank" className="link" alt="clicky-game-github-link"><i className="fa fa-github fa-2x"></i></a>
+        </BottomNavMDC>
+
+      </div>
+    )
+  }
+}
+     
+  
 
 export default App;
