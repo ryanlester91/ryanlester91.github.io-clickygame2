@@ -48,7 +48,7 @@ class App extends Component {
       this.setState(this.state = newState)
     } else {
       newState.pickedChars.push(name)
-      newState.alertMessage = `GOOD CHOICE!`
+      newState.alertMessage = `GOOD CHOICE! IT'S "${name.toUpperCase()}"!`
       this.setState(this.state = newState)
     }
     cb(newState, this.alertWinner)
@@ -120,7 +120,7 @@ class App extends Component {
           ))}
         </GridMDC>
         <BottomNavMDC style={{ background: "#313133", marginTop: "17.5px", paddingTop: "15px", borderTop: "2.5px solid slategray" }}>
-          <a href="#" target="_blank" className="link" alt="clicky-game-github-link"><i className="fa fa-github fa-2x"></i></a>
+          <a href="https://ryanlester91.github.io/Bootstrap-Portfolio/" target="_blank" className="link" alt="clicky-game-github-link"><i className="fa fa-github fa-2x"></i></a>
         </BottomNavMDC>
 
       </div>
